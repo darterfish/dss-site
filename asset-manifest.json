@@ -1,0 +1,137 @@
+{
+  "site": "Data Sales Science sophisticated rebuild",
+  "pages": [
+    "index.html",
+    "products.html",
+    "invoiceandcollect.html",
+    "litigationconnection.html",
+    "workflow-labs.html",
+    "advisory.html",
+    "founder.html",
+    "media.html",
+    "blog.html",
+    "contact.html",
+    "successes.html"
+  ],
+  "blog_posts_count": 4,
+  "blog_posts": [
+    {
+      "title": "Objection Handling",
+      "slug": "objection-handling",
+      "date": "2020-06-02 02:48:16",
+      "incomplete": true
+    },
+    {
+      "title": "How Fast Are You Closing Deals?",
+      "slug": "how-fast-are-you-closing-deals",
+      "date": "2020-06-02 02:47:12",
+      "incomplete": false
+    },
+    {
+      "title": "What's A Title Worth To You?",
+      "slug": "whats-a-title-worth-to-you",
+      "date": "2020-06-02 02:46:29",
+      "incomplete": false
+    },
+    {
+      "title": "Three Pillars of Lead Generation",
+      "slug": "three-pillars-of-lead-generation",
+      "date": "2020-06-02 02:45:22",
+      "incomplete": false
+    }
+  ],
+  "media_items_count": 13,
+  "media_items": [
+    {
+      "type": "Podcast",
+      "title": "Decision Point Podcast \u2014 Data Driven Cold Calling",
+      "url": "https://monsterconnect.com/data-driven-cold-calling-with-mark-shalinsky-phd/"
+    },
+    {
+      "type": "Podcast",
+      "title": "The Talent, Sales & Scale Podcast",
+      "url": "https://open.spotify.com/episode/2PSHmDl5sJrasbShydcx9f"
+    },
+    {
+      "type": "Podcast Archive",
+      "title": "Salesborgs Podcast Archive",
+      "url": "https://www.salesborgs.ai/podcasts/"
+    },
+    {
+      "type": "Expert Feature",
+      "title": "6sense \u2014 Sales Experts to Follow",
+      "url": "https://6sense.com/blog/sales-experts/"
+    },
+    {
+      "type": "Guest Article",
+      "title": "SalesIntel \u2014 The Sales Conundrum: Art or Science?",
+      "url": "https://salesintel.io/blog/sales-art-or-science/"
+    },
+    {
+      "type": "Guest Article",
+      "title": "SalesIntel \u2014 How to Generate Cybersecurity Leads",
+      "url": "https://salesintel.io/blog/how-to-generate-cybersecurity-leads/"
+    },
+    {
+      "type": "Webinar",
+      "title": "SalesIntel \u2014 How Data Can Drive Relevancy at Scale",
+      "url": "https://salesintel.io/webinars/how-data-can-drive-relevancy-at-scale/"
+    },
+    {
+      "type": "Webinar",
+      "title": "SalesIntel \u2014 Unblock Your Sales Team",
+      "url": "https://salesintel.io/webinars/unblock-your-sales-team/"
+    },
+    {
+      "type": "LinkedIn Article",
+      "title": "Webpage Content vs Blog",
+      "url": "https://www.linkedin.com/pulse/webpage-content-vs-blog-mark-shalinsky/"
+    },
+    {
+      "type": "Legacy Blog",
+      "title": "Sales Ops Prof \u2014 First Blog Post",
+      "url": "https://salesopsprof.wordpress.com/2016/10/18/first-blog-post/"
+    },
+    {
+      "type": "Guest Article",
+      "title": "AdOrbit \u2014 The Basics of a Formal Sales Process",
+      "url": "https://www.adorbit.com/blog/the-basics-of-a-formal-sales-process/"
+    },
+    {
+      "type": "Guest Article",
+      "title": "AdOrbit \u2014 Top Four Reasons You Need a Sales Script",
+      "url": "https://www.adorbit.com/blog/top-four-reasons-you-need-a-sales-script/"
+    },
+    {
+      "type": "Guest Article",
+      "title": "DryvIQ \u2014 Data Loss Prevention",
+      "url": "https://dryviq.com/data-loss-prevention/"
+    }
+  ],
+  "email": "mark@datasalesscience.com",
+  "linkedin": "https://www.linkedin.com/in/markshalinsky/",
+  "v2_refinements": [
+    "Products/Labs/Services dropdown simplified",
+    "Workflow Labs moved under Advisory Services",
+    "Blog wording generalized",
+    "LitigationConnection platform screenshot added",
+    "Our Successes page added",
+    "Legacy system images restored"
+  ],
+  "v3_refinements": [
+    "Founder dropdown About/Successes",
+    "Grappling background updated",
+    "InvoiceAndCollect Google Add-on placeholder button",
+    "LitigationConnection white platform image",
+    "Dark workflow image moved to Advisory context",
+    "Advisory service icons added"
+  ],
+  "v4_logo_fix": {
+    "based_on": "datasalesscience-sophisticated-rebuild-v3",
+    "logos_added": [
+      "assets/img/logos/invoiceandcollect-logo.png",
+      "assets/img/logos/litigationconnection-logo.jpeg"
+    ],
+    "css_path": "assets/css/style.css"
+  }
+}
