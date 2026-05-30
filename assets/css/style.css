@@ -211,67 +211,19 @@ h3{letter-spacing:-.02em}
   cursor:not-allowed;
 }
 
-
-/* v4 logo refinements */
-.service-logo{
-  min-height:72px;
+/* product logo icons */
+.product-logo-icon{
+  width:100%;
+  max-width:200px;
+  height:52px;
   display:flex;
   align-items:center;
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
-
-.service-logo img{
-  max-height:72px;
-  max-width:100%;
+.product-logo-icon img{
+  max-height:52px;
   width:auto;
+  max-width:200px;
   object-fit:contain;
-}
-
-.small-litigation-logo img{
-  max-height:82px;
-  border-radius:14px;
-  background:#fff;
-}
-
-.product-logo{
-  margin-bottom:22px;
-}
-
-.product-logo img{
-  max-width:320px;
-  height:auto;
-  object-fit:contain;
-}
-
-.product-logo.litigation-logo img{
-  max-width:170px;
-  border-radius:16px;
-  background:#fff;
-  padding:8px;
-}
-
-.service-card .service-logo + h3,
-.card .service-logo + h3{
-  margin-top:8px;
-}
-
-@media(max-width:880px){
-  .service-logo{
-    min-height:62px;
-  }
-  .service-logo img{
-    max-height:62px;
-  }
-  .small-litigation-logo img{
-    max-height:74px;
-  }
-  .product-logo img{
-    max-width:280px;
-  }
-}
-
-@media(max-width:560px){
-  .product-logo img{
-    max-width:240px;
-  }
+  display:block;
 }
