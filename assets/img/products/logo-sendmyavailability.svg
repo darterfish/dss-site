@@ -1,28 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80">
-  <!-- Calendar icon background -->
-  <rect x="0" y="4" width="72" height="72" rx="14" fill="#6d35c4"/>
-  <!-- Calendar top bar -->
-  <rect x="0" y="4" width="72" height="22" rx="14" fill="#5528a0"/>
-  <rect x="0" y="16" width="72" height="10" fill="#5528a0"/>
-  <!-- Binding dots -->
-  <circle cx="23" cy="10" r="4" fill="white" opacity="0.9"/>
-  <circle cx="49" cy="10" r="4" fill="white" opacity="0.9"/>
-  <!-- Grid -->
-  <line x1="12" y1="44" x2="60" y2="44" stroke="white" stroke-width="0.8" opacity="0.3"/>
-  <line x1="12" y1="57" x2="60" y2="57" stroke="white" stroke-width="0.8" opacity="0.3"/>
-  <line x1="24" y1="32" x2="24" y2="72" stroke="white" stroke-width="0.8" opacity="0.3"/>
-  <line x1="36" y1="32" x2="36" y2="72" stroke="white" stroke-width="0.8" opacity="0.3"/>
-  <line x1="48" y1="32" x2="48" y2="72" stroke="white" stroke-width="0.8" opacity="0.3"/>
-  <!-- Check marks -->
+  
+  <rect x="0" y="4" width="72" height="72" rx="14" fill="#6d35c4"></rect>
+  
+  <rect x="0" y="4" width="72" height="22" rx="14" fill="#5528a0"></rect>
+  <rect x="0" y="16" width="72" height="10" fill="#5528a0"></rect>
+  
+  <circle cx="23" cy="10" r="4" fill="white" opacity="0.9"></circle>
+  <circle cx="49" cy="10" r="4" fill="white" opacity="0.9"></circle>
+  
+  <line x1="12" y1="44" x2="60" y2="44" stroke="white" stroke-width="0.8" opacity="0.3"></line>
+  <line x1="12" y1="57" x2="60" y2="57" stroke="white" stroke-width="0.8" opacity="0.3"></line>
+  <line x1="24" y1="32" x2="24" y2="72" stroke="white" stroke-width="0.8" opacity="0.3"></line>
+  <line x1="36" y1="32" x2="36" y2="72" stroke="white" stroke-width="0.8" opacity="0.3"></line>
+  <line x1="48" y1="32" x2="48" y2="72" stroke="white" stroke-width="0.8" opacity="0.3"></line>
+  
   <text x="18" y="43" font-family="Arial" font-size="9" fill="white" opacity="0.9" text-anchor="middle">✓</text>
   <text x="30" y="43" font-family="Arial" font-size="9" fill="white" opacity="0.4" text-anchor="middle">—</text>
   <text x="42" y="43" font-family="Arial" font-size="9" fill="white" opacity="0.9" text-anchor="middle">✓</text>
   <text x="54" y="43" font-family="Arial" font-size="9" fill="white" opacity="0.9" text-anchor="middle">✓</text>
-  <!-- Person icon -->
-  <circle cx="18" cy="57" r="3.5" fill="white" opacity="0.85"/>
-  <path d="M13 68 Q18 62 23 68" fill="none" stroke="white" stroke-width="1.5" opacity="0.85" stroke-linecap="round"/>
-  <!-- Wordmark -->
+  
+  <circle cx="18" cy="57" r="3.5" fill="white" opacity="0.85"></circle>
+  <path d="M13 68 Q18 62 23 68" fill="none" stroke="white" stroke-width="1.5" opacity="0.85" stroke-linecap="round"></path>
+  
   <text x="88" y="44" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#171321" letter-spacing="-0.5">SendMy<tspan fill="#6d35c4">Availability</tspan></text>
-  <!-- Tagline -->
+  
   <text x="90" y="64" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5e566c">A more human way to schedule meetings</text>
 </svg>
