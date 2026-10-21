@@ -357,3 +357,10 @@ h3{letter-spacing:-.01em;font-weight:700}
 .hud-toss .eq i{font-family:var(--serif);font-size:1.02rem;color:#f4eee2}.hud-toss .eq span{font-size:.74rem;color:#b9abcf;font-variant-numeric:tabular-nums}.hud-toss .eq b{color:var(--gold2)}
 .hud-toss .live{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid rgba(200,168,90,.25);padding-top:6px;margin-top:2px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#a99bbd}
 .hud-toss .live b{font-family:var(--serif);font-size:1rem;letter-spacing:0;color:#7fd0d6;margin:0 2px 0 4px;font-variant-numeric:tabular-nums}
+.page-hero.blog-hero .container{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.blog-field{position:relative;aspect-ratio:16/10;cursor:crosshair}
+.blog-field>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.blog-field-cap{position:absolute;left:50%;bottom:0;transform:translateX(-50%);display:flex;gap:10px;align-items:baseline;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--aub);text-decoration:none;transition:color .2s}
+.blog-field-cap span{font-family:var(--sans);font-style:normal;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+.blog-field-cap:hover{color:var(--gold)}
+.blog-card{transition:transform .25s,border-color .25s}.blog-card:hover{transform:translateY(-3px);border-color:var(--gold2)}
