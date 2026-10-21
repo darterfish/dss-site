@@ -54,7 +54,7 @@ mat.opacityNode=smoothstep(.5,.2,length(uv().sub(.5))).mul(.85);
 const sprites=new THREE.Sprite(mat);sprites.count=N;sprites.frustumCulled=false;scene.add(sprites);
 await renderer.computeAsync(init);
 
-let cur=0,hoverIdx=-1,lastSwitch=0,vis=true,last=performance.now();
+let acc=0,cur=0,hoverIdx=-1,lastSwitch=0,vis=true,last=performance.now();
 const setShape=i=>{if(i===cur)return;cur=i;uShape.value=i;const s=SHAPES[i];
   if(cap){cap.innerHTML=i===0?'<span>Hover a post to reshape the field</span>':`<span>Now forming</span>${s.t} →`;cap.href=i===0?'#archive':`blog/${document.querySelector(`.blog-card a[href*="${s.k}"]`)?.getAttribute('href')?.split('/').pop()||''}`}};
 setShape(0);cap&&(cap.innerHTML='<span>Hover a post to reshape the field</span>');
@@ -69,8 +69,8 @@ const resize=()=>{const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;rend
 new ResizeObserver(resize).observe(el);resize();
 new IntersectionObserver(([e])=>vis=e.isIntersecting).observe(el);
 el.__fx={step(n=1){uDt.value=1/60;for(let i=0;i<n;i++)renderer.compute(update);renderer.render(scene,cam)},setShape};
-renderer.setAnimationLoop(now=>{const dt=Math.min((now-last)/1000,.05);last=now;if(!vis)return;
+renderer.setAnimationLoop(now=>{const dt=Math.min((now-last)/1000,.1);last=now;if(!vis)return;
   if(hoverIdx<0&&!reduce&&now-lastSwitch>4200){lastSwitch=now;setShape((cur+1)%M)}
-  uDt.value=dt*(reduce?.4:1);sprites.rotation.y=Math.sin(now*.00015)*.12;
-  renderer.compute(update);renderer.render(scene,cam)});
+  sprites.rotation.y=Math.sin(now*.00015)*.12;
+  const h=1/60;uDt.value=h*(reduce?.4:1);acc+=dt;let n=0;while(acc>=h&&n<5){renderer.compute(update);acc-=h;n++}if(n===5)acc=0;renderer.render(scene,cam)});
 }
