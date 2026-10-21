@@ -68,7 +68,7 @@ const DOCS=[
 const TOK=/("[^"]*"?|'[^']*'?|\{[a-z]+\}|›|\b(?:for|in|if|const|return|yield|Subject)\b|\d[\d,]*)/g;
 function rr(x,a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
 function drawCard(c,n,blink){
-  const x=c.ctx,W=640,H=400;x.clearRect(0,0,W,H);rr(x,3,3,W-6,H-6,22);x.fillStyle='rgba(31,18,51,.94)';x.fill();x.lineWidth=2;x.strokeStyle='rgba(200,168,90,.5)';x.stroke();
+  const x=c.ctx,W=640,H=400;x.clearRect(0,0,W,H);rr(x,3,3,W-6,H-6,22);x.fillStyle='rgba(24,13,40,.97)';x.fill();x.lineWidth=3;x.strokeStyle=c.hot?'rgba(232,200,120,.95)':'rgba(200,168,90,.55)';x.stroke();
   ['#b3903f','#5d3a86','#277f89'].forEach((f,i)=>{x.beginPath();x.arc(36+i*22,40,6,0,7);x.fillStyle=f;x.fill()});
   x.font='600 21px "Public Sans", sans-serif';x.fillStyle='#c9bdd9';x.textBaseline='middle';x.fillText(c.t,110,41);
   x.fillStyle='rgba(201,189,217,.15)';x.fillRect(24,70,W-48,1.5);
@@ -85,13 +85,16 @@ export function scripts({scene,cam,ptr}){
   const cards=DOCS.map((d,i)=>{const cv=document.createElement('canvas');cv.width=640;cv.height=400;
     const tex=new THREE.CanvasTexture(cv);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
     const mesh=new THREE.Mesh(new THREE.PlaneGeometry(3.2,2),new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false}));
-    const o=i-2;mesh.position.set(o*2.75,(i%2?.9:-.7),-Math.abs(o)*1.4);mesh.rotation.y=-o*.28;grp.add(mesh);
+    const o=i-2;mesh.position.set(o*2.3,(i%2?1.05:-.85),-Math.abs(o)*1.6);mesh.rotation.y=-o*.32;mesh.renderOrder=2;grp.add(mesh);
+    const glow=new THREE.Mesh(new THREE.PlaneGeometry(4.6,3.4),new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,uniforms:{uI:{value:0}},vertexShader:'varying vec2 vU;void main(){vU=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'varying vec2 vU;uniform float uI;void main(){vec2 d=abs(vU-.5)*2.;float r=length(max(d-vec2(.62,.52),0.))*3.2;float a=exp(-r*r*2.)*uI;gl_FragColor=vec4(vec3(.78,.6,.25)*a,a);}'}));glow.position.z=-.05;glow.renderOrder=1;mesh.add(glow);mesh.userData.glow=glow;
     return{...d,ctx:cv.getContext('2d'),tex,mesh,total:d.l.join('').length,off:[0,2.2,1.1,3.3,.5][i],base:mesh.position.y,last:-1}});
-  cam.position.set(0,0,9.5);
+  cam.position.set(0,0,8.4);
   return{update(t){
     cards.forEach((c,i)=>{const P=c.total/26+3.2,lt=(t+c.off)%P,n=Math.floor(lt*26),bl=Math.floor(t*2.2)%2===0,key=n*2+(bl?1:0);
+      const typing=n<c.total;if(typing!==c.hot){c.hot=typing;c.last=-1}
       if(key!==c.last){drawCard(c,n,bl);c.last=key}
-      c.mesh.position.y=c.base+Math.sin(t*.7+i*1.3)*.1;c.mesh.material.opacity=ss(0,.4,lt)*(1-ss(P-.5,P,lt)*.85)});
+      const hot=ss(0,.4,lt)*(1-ss(c.total/26,c.total/26+1,lt));c.mesh.userData.glow.material.uniforms.uI.value=.25+.9*hot;c.mesh.scale.setScalar(1+.07*hot);
+      c.mesh.position.y=c.base+Math.sin(t*.7+i*1.3)*.1;c.mesh.material.opacity=.35+.65*ss(0,.4,lt)*(1-ss(P-.5,P,lt)*.6)});
     grp.rotation.y=ptr.x*.22;grp.rotation.x=-ptr.y*.1}};
 }
 
