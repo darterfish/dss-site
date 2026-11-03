@@ -1,22 +1,32 @@
 import * as THREE from 'three/webgpu';
 import {Fn,instancedArray,instanceIndex,uniform,uint,vec3,float,hash,mx_noise_vec3,time,length,normalize,max,mix,smoothstep,uv,cos} from 'three/tsl';
 
-const els=[...document.querySelectorAll('.ws-fx')];
+const els=[...document.querySelectorAll('.wf-fx')];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 await document.fonts.load('italic 600 120px "Spectral"').catch(()=>{});
-for(const el of els)mountWS(el).catch(e=>console.error('ws-fx',e));
+for(const el of els)mountWS(el).catch(e=>console.error('wf-fx',e));
 
 async function mountWS(el){
 const big=el.dataset.size!=='tile';
-const N=reduce?20000:(big?70000:26000),WW=10,R=Math.random;
-const words=(el.dataset.words||'Bright|Vibrant|Insane.').split('|');
-const SH=['browser','galaxy',...words,'burst'],M=SH.length;
+const N=reduce?(big?20000:6000):(big?70000:11000),WW=10,R=Math.random;
+const SH=el.dataset.shapes?el.dataset.shapes.split('|'):['pipeline','Claude','GitHub','Vercel','Supabase','yourdomain.com','burst'],M=SH.length;
 const tgt=new Float32Array(N*M*3);
 const text=(w,si)=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=420;const x=cv.getContext('2d',{willReadFrequently:true});
-  x.font='italic 600 260px "Spectral", Georgia, serif';const mw=x.measureText(w).width,fs=Math.min(260,260*1250/mw);
-  x.font=`italic 600 ${fs}px "Spectral", Georgia, serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(w,700,215);
+  if(DRAW[w])DRAW[w](x);else{x.font='italic 600 260px "Spectral", Georgia, serif';const mw=x.measureText(w).width,fs=Math.min(260,260*1250/mw);
+  x.font=`italic 600 ${fs}px "Spectral", Georgia, serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(w,700,215)}
   const d=x.getImageData(0,0,1400,420).data,px=[];for(let y=0;y<420;y+=2)for(let X=0;X<1400;X+=2)if(d[(y*1400+X)*4+3]>140)px.push(X,y);
   const n=px.length/2,sc=WW/1400;for(let i=0;i<N;i++){const j=(R()*n|0)*2,o=(si*N+i)*3;tgt[o]=(px[j]-700)*sc;tgt[o+1]=-(px[j+1]-210)*sc;tgt[o+2]=(R()-.5)*.6}};
+const drawPipe=x=>{x.lineWidth=5;x.strokeStyle='#000';x.fillStyle='#000';x.textAlign='center';x.textBaseline='middle';x.font='italic 600 92px "Spectral", Georgia, serif';
+  const t=(s,cx,cy)=>x.fillText(s,cx,cy);
+  const arrow=(x0,y0,x1,y1)=>{x.beginPath();x.moveTo(x0,y0);x.lineTo(x1,y1);x.stroke();const a=Math.atan2(y1-y0,x1-x0);x.beginPath();x.moveTo(x1,y1);x.lineTo(x1-24*Math.cos(a-.5),y1-24*Math.sin(a-.5));x.lineTo(x1-24*Math.cos(a+.5),y1-24*Math.sin(a+.5));x.closePath();x.fill()};
+  t('Claude',210,90);t('GitHub',690,90);t('Vercel',1170,90);t('Supabase',690,320);x.font='italic 600 80px "Spectral", Georgia, serif';t('yourdomain',1170,320);
+  arrow(370,90,520,90);arrow(860,90,1015,90);arrow(1170,150,1170,250);arrow(870,300,1030,170)};
+const DRAW={pipeline:drawPipe,
+ lock:x=>{x.fillStyle='#000';x.beginPath();x.roundRect(560,185,280,215,28);x.fill();x.lineWidth=40;x.strokeStyle='#000';x.beginPath();x.arc(700,185,100,Math.PI,0);x.stroke();x.globalCompositeOperation='destination-out';x.beginPath();x.arc(700,270,30,0,7);x.fill();x.fillRect(686,280,28,70);x.globalCompositeOperation='source-over'},
+ branch:x=>{x.lineWidth=16;x.strokeStyle=x.fillStyle='#000';x.beginPath();x.moveTo(240,290);x.lineTo(1160,290);x.stroke();x.beginPath();x.moveTo(520,290);x.bezierCurveTo(600,110,650,110,760,110);x.lineTo(880,110);x.bezierCurveTo(990,110,1020,200,1090,290);x.stroke();for(const[cx,cy]of[[260,290],[520,290],[760,290],[1100,290],[760,110],[900,110]]){x.beginPath();x.arc(cx,cy,40,0,7);x.fill()}},
+ triangle:x=>{x.fillStyle='#000';x.beginPath();x.moveTo(700,30);x.lineTo(930,390);x.lineTo(470,390);x.closePath();x.fill()},
+ database:x=>{x.lineWidth=16;x.strokeStyle='#000';const e=(y,full)=>{x.beginPath();x.ellipse(700,y,230,52,0,full?0:0,full?7:Math.PI);x.stroke()};e(80,1);e(200,0);e(320,0);x.beginPath();x.moveTo(470,80);x.lineTo(470,320);x.moveTo(930,80);x.lineTo(930,320);x.stroke()},
+ globe:x=>{x.lineWidth=12;x.strokeStyle='#000';x.beginPath();x.arc(700,210,185,0,7);x.stroke();for(const rx of[60,125]){x.beginPath();x.ellipse(700,210,rx,185,0,0,7);x.stroke()}for(const y of[120,210,300]){const dy=Math.abs(y-210),hw=Math.sqrt(185*185-dy*dy);x.beginPath();x.moveTo(700-hw,y);x.lineTo(700+hw,y);x.stroke()}}};
 const W=4.4,H=2.8,rr=.25;
 const rect=(x0,y0,x1,y1)=>{const per=2*(x1-x0+y1-y0),t=R()*per;if(t<x1-x0)return[x0+t,y1];if(t<2*(x1-x0))return[x0+t-(x1-x0),y0];const u=t-2*(x1-x0);return u<y1-y0?[x0,y0+u]:[x1,y0+u-(y1-y0)]};
 SH.forEach((s,si)=>{
@@ -74,7 +84,7 @@ el.__ws={hold:false,set(i){setShape(i);this.hold=true},step(n=1){uDt.value=1/60;
 new IntersectionObserver(([e])=>vis=e.isIntersecting,{rootMargin:'100px'}).observe(el);
 let acc=0;
 renderer.setAnimationLoop(now=>{const dt=Math.min((now-last)/1000,.1);last=now;if(!vis)return;
-  sim+=dt*1000;if(!el.__ws.hold&&sim-lastSwitch>DUR*(SH[cur]==='galaxy'||SH[cur]==='burst'?.6:1)){lastSwitch=sim;setShape((cur+1)%M)}
+  sim+=dt*1000;if(!el.__ws.hold&&sim-lastSwitch>DUR*(SH[cur]==='pipeline'?2.2:SH[cur]==='burst'?.5:1)){lastSwitch=sim;setShape((cur+1)%M)}
   kick*=Math.exp(-dt*6);uKick.value=reduce?0:kick;
   sprites.rotation.y=Math.sin(now*.0003)*.22;sprites.rotation.x=Math.sin(now*.00021)*.08;
   const h=1/60;uDt.value=h*(reduce?.5:1);acc+=dt;let n=0;while(acc>=h&&n<5){renderer.compute(update);acc-=h;n++}if(n===5)acc=0;
